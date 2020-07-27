@@ -4,16 +4,13 @@
 plugins {
     kotlin("multiplatform") version Kotlin.version apply false
     id("de.undercouch.download") version Download.version apply false
-    id("org.jetbrains.dokka") version Dokka.version
+    id("org.jetbrains.dokka") version Dokka.version apply false
 }
 
 allprojects {
     repositories {
+        jcenter()
         mavenCentral()
         maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
-}
-
-apply {
-    from("dokka.gradle")
 }

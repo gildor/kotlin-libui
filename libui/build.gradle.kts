@@ -3,6 +3,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 import de.undercouch.gradle.tasks.download.Download
+import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import org.jetbrains.kotlin.konan.target.Family
@@ -10,6 +11,7 @@ import org.jetbrains.kotlin.konan.target.KonanTarget.*
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.dokka")
     id("de.undercouch.download")
     id("maven-publish")
 }
@@ -49,6 +51,16 @@ kotlin {
             kotlinOptions.freeCompilerArgs = listOf(
                 "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a"
             )
+        }
+        tasks.withType<DokkaTask> {
+            outputDirectory = "${rootProject.rootDir}/docs"
+            dokkaSourceSets {
+                register("${targetName}Main") {
+                    sourceRoot { path = "src/nativeMain/kotlin" }
+                    moduleDisplayName = "."
+                    noStdlibLink = true
+                }
+            }
         }
     }
 }
