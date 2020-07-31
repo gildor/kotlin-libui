@@ -20,7 +20,7 @@ object Libui {
 }
 
 object Dokka {
-    const val version = "1.4.0-rc-14"
+    const val version = "1.4.0-rc-21"
 }
 
 object Download {
