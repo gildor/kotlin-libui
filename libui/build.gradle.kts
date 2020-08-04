@@ -53,11 +53,11 @@ kotlin {
             )
         }
         tasks.withType<DokkaTask> {
-            outputDirectory = "${rootProject.rootDir}/docs"
+            outputDirectory = "${rootProject.rootDir}/dokka"
             dokkaSourceSets {
                 register("${targetName}Main") {
                     sourceRoot { path = "src/nativeMain/kotlin" }
-                    moduleDisplayName = "."
+                    //moduleDisplayName = "."
                     noStdlibLink = true
                 }
             }
